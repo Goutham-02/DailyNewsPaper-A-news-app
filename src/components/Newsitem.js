@@ -7,8 +7,8 @@ export class Newsitem extends Component {
     return (
       <div>
         <div className="my-3">
-          <div className="card" style={{ width: "18rem" }}>
-            <img src={imageURL ? imageURL : "https://static.toiimg.com/thumb/msid-110277122,imgsize-1089299,width-900,height-1200,resizemode-6/110277122.jpg"} className="card-img-top" alt="..." />
+          <div className="card">
+            <img src={imageURL ? imageURL : "https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg"} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">{title}</h5>
               <p className="card-text">{description}</p>
