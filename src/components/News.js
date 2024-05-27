@@ -16,7 +16,7 @@ export class News extends Component {
     category: PropTypes.string
   }
 
-  capz = (string) => {
+  capitalise = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
@@ -27,7 +27,7 @@ export class News extends Component {
       loading: false,
       page: 1
     }
-    document.title = `${this.capz(this.props.category)} - DailyNewsPaper`;
+    document.title = `${this.capitalise(this.props.category)} - DailyNewsPaper`;
   }
 
   async componentDidMount() {
@@ -72,7 +72,7 @@ export class News extends Component {
   render() {
     return (
       <div className='container my-3'>
-        <h1 className="text-center" style={{margin: '30px 0px'}}>DailyNewsPaper - Top {this.capz(this.props.category)} Headlines</h1>
+        <h1 className="text-center" style={{margin: '30px 0px'}}>DailyNewsPaper - Top {this.capitalise(this.props.category)} Headlines</h1>
         {this.state.loading && <Spinner />}
         <div className="row">
           {!this.state.loading && this.state.articles.map((element) => {
