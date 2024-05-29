@@ -14,8 +14,6 @@ const News = (props) => {
   const capitalise = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
-  document.title = `${capitalise(props.category)} - DailyNewsPaper`;
   
   const updateNews = async () => {
     props.setProgress(10);
@@ -30,14 +28,15 @@ const News = (props) => {
     setLoading(false)
     props.setProgress(100);
   }
-  
+
   useEffect(() => {
+    document.title = `${capitalise(props.category)} - DailyNewsPaper`;
     updateNews();
   }, [])
 
   const fetchMoreData = async () => {
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pagesize=${props.pageSize}`;
     setPage(page + 1);
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pagesize=${props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     setArticles(articles.concat(parsedData.articles))
@@ -47,7 +46,7 @@ const News = (props) => {
 
   return (
     <>
-      <h1 className="text-center" style={{ margin: '70px 0px 30px 0px' }}>DailyNewsPaper - Top {capitalise(props.category)} Headlines</h1>
+      <h1 className="text-center" style={{ margin: '90px 0px 30px' }}>DailyNewsPaper - Top {capitalise(props.category)} Headlines</h1>
       {loading && <Spinner />}
       <InfiniteScroll
         dataLength={articles.length}
